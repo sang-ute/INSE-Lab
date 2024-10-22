@@ -139,7 +139,7 @@ First, the program must be compiled with option `-fno-stack-protector` to disabl
 
 ```bash
 gcc vuln.c -o vuln.o -fno-stack-protector -z execstack -mpreferred-stack-boundary=3 
-
+```
 Secondly, estimate the buffer size of the program. Notice that there is a char variable named `buf` with the size of 64 bytes. The following picture represent the stack frame of the `main()` function of the vulnerable program.
 
 

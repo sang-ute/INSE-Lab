@@ -141,7 +141,7 @@ First, the program must be compiled with option `-fno-stack-protector` to disabl
 ```bash
 gcc vuln.c -o vuln.o -fno-stack-protector -z execstack -mpreferred-stack-boundary=3 
 ```
-![Example image]([https://example.com/image.png](https://github.com/sang-ute/INSE-Lab/blob/main/Lab%231/img/vuln.c%20and%20out.PNG))
+![Example image](./img/vuln.c and out.PNG)
 
 Secondly, estimate the buffer size of the program. Notice that there is a char variable named `buf` with the size of 64 bytes. The following picture represent the stack frame of the `main()` function of the vulnerable program.
 
@@ -185,5 +185,5 @@ In the example:
 # Task 2: Exploit using SQLmap
 ## Prepare the enviroment, SQLmap
 First, docker pull the bwapp back
-![alt text](./Lab#1/img/bwapp.PNG), we can go to the [localhost](http://localhost:8025/portal.php) page
+![bwapp](./img/bwapp.PNG), we can go to the [localhost](http://localhost:8025/portal.php) page
 Now, download SQLmap

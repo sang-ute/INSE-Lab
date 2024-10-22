@@ -86,6 +86,7 @@ To compile the program, run the following script:
 ```bash
 nasm -g -f elf shellcode.asm
 ```
+![Example image]([https://example.com/image.png](https://github.com/sang-ute/INSE-Lab/blob/main/Lab%231/img/vuln.c%20and%20out.PNG))
 
 A new file `shellcode.o` is created.
 
@@ -140,6 +141,8 @@ First, the program must be compiled with option `-fno-stack-protector` to disabl
 ```bash
 gcc vuln.c -o vuln.o -fno-stack-protector -z execstack -mpreferred-stack-boundary=3 
 ```
+![Example image]([https://example.com/image.png](https://github.com/sang-ute/INSE-Lab/blob/main/Lab%231/img/vuln.c%20and%20out.PNG))
+
 Secondly, estimate the buffer size of the program. Notice that there is a char variable named `buf` with the size of 64 bytes. The following picture represent the stack frame of the `main()` function of the vulnerable program.
 
 
@@ -154,11 +157,46 @@ The program is 77 bytes long. When we inject the hex string of the program into 
 We really have a problem here, do we?
 
 ## 2. Preparing for the attack
+I will try and create a new C file which will revolke the strcpy
+```
+#include <unistd.h>
 
-
-
+void strcpy (char *buffer, const char * arg)
+{
+execl ("./shellcode", (char*)NULL);
+}
+```
+For now, I will go to terminal of Kali Linux, due to lab 2 needs to be made too
 ## 3. Attack
+**Translation to English:**
 
+- "Change it like this.
+- Then compile the file to get the object file.
+- Map it to a shared object.
+- Basically, it acts like a `libc` file.
+- It contains predefined functions.
+- So when a program runs, it will map the shared object file into memory and call the defined functions inside.
+- Here, because the original program calls `strcpy`,
+- I renamed the function,
+- But the function body doesn't just copy; it will execute another file."
+
+---
+
+**Explanation:**
+
+In this context, the user is explaining the process of compiling a C source file into an object file and then mapping it into a shared object (likely a `.so` file in Unix-like systems). A shared object is similar to a library (like `libc`), which contains predefined functions that can be dynamically linked and used by programs at runtime.
+
+In the example:
+
+1. **Compiling to Object File:** The source file is compiled into an object file.
+2. **Mapping to Shared Object:** This object file is then converted into a shared object (likely with the `-shared` option in GCC).
+3. **Dynamic Linking:** When a program is executed, it maps the shared object into memory and dynamically links to the functions defined inside the object.
+4. **Original Call:** The original program was calling the `strcpy` function.
+5. **Renaming Function:** The user has renamed the function to something else but mentions that it’s not a direct copy operation (as `strcpy` would normally do). Instead, it executes another file.
 
 **Explain**
+
+# Task 2: Exploit using SQLmap
+## Prepare the enviroment, SQLmap
+First, docker pull the bwapp back
 

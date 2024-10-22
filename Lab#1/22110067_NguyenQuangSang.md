@@ -215,6 +215,9 @@ We retrived 5 categories inside the table, but table `users` seems to have value
 Specifies the value of element `users` inside the tables by `T users` and then `dump` the content of the whole table out
 ![tableuserwpwd](https://github.com/user-attachments/assets/7d486172-9bb4-4c0f-a743-2f84f484ab19)
 And Voilà, there's your username and password (encrypted)
+And apparently it's decyphered under too
+![AIM-bug](https://github.com/user-attachments/assets/0a803735-0e51-4071-ba1c-5052b7fdf27a)
+Password is 'bug', thanks to SQLmap
 ## Using John the ripper to crack the password
 *First, we copy the string of hashes*
 Next, use the John the Ripper, download via wsl

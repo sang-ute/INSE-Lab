@@ -117,7 +117,7 @@ for i in $(objdump -d sh |grep "^ "|cut -f2); do echo -n '\x'$i; done; echo
 ```
 
 Result:
-![capture](https://github.com/sang-ute/INSE-Lab/blob/main/Lab%231/img/Capture.PNG)
+![capture]((https://github.com/sang-ute/INSE-Lab/blob/main/Lab%231/img/PrintStringtoterminal.PNG))
 
 **Generate binary file**
 

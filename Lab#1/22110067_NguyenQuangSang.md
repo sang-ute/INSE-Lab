@@ -86,7 +86,6 @@ To compile the program, run the following script:
 ```bash
 nasm -g -f elf shellcode.asm
 ```
-![Example image]([https://example.com/image.png](https://github.com/sang-ute/INSE-Lab/blob/main/Lab%231/img/vuln.c%20and%20out.PNG))
 
 A new file `shellcode.o` is created.
 
@@ -98,7 +97,7 @@ ld -m elf_i386 -o shellcode shellcode.o
 
 **Result**
 
-
+![shellcode o file](https://github.com/user-attachments/assets/ce6f7c1e-fe5a-4fb1-861b-7cf7fa2cae6d)
 
 A new file `shellcode` is created.
 
@@ -117,7 +116,8 @@ for i in $(objdump -d sh |grep "^ "|cut -f2); do echo -n '\x'$i; done; echo
 ```
 
 Result:
-![capture]((https://github.com/sang-ute/INSE-Lab/blob/main/Lab%231/img/PrintStringtoterminal.PNG))
+![PrintStringtoterminal](https://github.com/user-attachments/assets/402bce5a-e729-428b-b2ec-fce223fb9f15)
+
 
 **Generate binary file**
 
@@ -141,7 +141,7 @@ First, the program must be compiled with option `-fno-stack-protector` to disabl
 ```bash
 gcc vuln.c -o vuln.o -fno-stack-protector -z execstack -mpreferred-stack-boundary=3 
 ```
-![Example image]((https://github.com/sang-ute/INSE-Lab/blob/main/Lab%231/img/vuln.c%20and%20out.PNG))
+![vuln c and out](https://github.com/user-attachments/assets/56a921b8-edd6-44ed-941d-ac37bacf1992)
 
 Secondly, estimate the buffer size of the program. Notice that there is a char variable named `buf` with the size of 64 bytes. The following picture represent the stack frame of the `main()` function of the vulnerable program.
 
@@ -149,8 +149,8 @@ Secondly, estimate the buffer size of the program. Notice that there is a char v
 
 We can easily see that from `esp` to `eip`, there are 24 bytes, with 16 bytes of `buf`, 4 bytes of `ebp`, and 4 bytes of `eip`.
 
- Now we need to count how many bytes there are. A trick to do it fast is using `Ctrl + F` to find `x`.
-
+ Now we need to count how many bytes there are:
+![PrintStringtoterminal](https://github.com/user-attachments/assets/c5e776e4-f39b-4f3a-a69a-f1322f2c525e)
 
 The program is 77 bytes long. When we inject the hex string of the program into the stack, it takes over 77 bytes over 24 bytes of `buf`. To execute the shellcode through a buffer overflow, we need to overwrite the return address on the stack so that, instead of returning to the original caller (or exit), the program jumps to the location in memory where the shellcode is stored—in this case, the `esp` (stack pointer).
 
@@ -167,10 +167,12 @@ execl ("./shellcode", (char*)NULL);
 }
 ```
 For now, I will go to terminal of Kali Linux, due to lab 2 needs to be made too
+
 ## 3. Attack
 **Explanation:**
-
-In this context, the user is explaining the process of compiling a C source file into an object file and then mapping it into a shared object (likely a `.so` file in Unix-like systems). A shared object is similar to a library (like `libc`), which contains predefined functions that can be dynamically linked and used by programs at runtime.
+I will use the directory `stuff` to resolve the problem in Kali
+In this context, the process of compiling a C source file into an object file and then mapping it into a shared object (likely a `.so` file in Unix-like systems). A shared object is similar to a library (like `libc`), which contains predefined functions that can be dynamically linked and used by programs at runtime.
+![evattack c file](https://github.com/user-attachments/assets/dc2a92c7-61e6-4f39-8bcf-f2054603dfb0)
 
 In the example:
 
@@ -185,7 +187,8 @@ In the example:
 # Task 2: Exploit using SQLmap
 ## Prepare the enviroment, SQLmap
 First, docker pull the bwapp back
-![bwapp]([./img/bwapp.PNG](https://github.com/sang-ute/INSE-Lab/blob/main/Lab%231/img/bwaap.PNG)), we can go to the (http://localhost:8025/portal.php) page
+![bwaap](https://github.com/user-attachments/assets/8079c86c-a957-44ee-8abc-0303a5e652bb)
+Then we can go to the (http://localhost:8025/portal.php) page.
 Now, download SQLmap
 ![Capture](https://github.com/user-attachments/assets/9f22c6d9-edf0-44cf-84a6-c714699317b4)
 

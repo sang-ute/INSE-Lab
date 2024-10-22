@@ -187,3 +187,5 @@ In the example:
 First, docker pull the bwapp back
 ![bwapp](./img/bwapp.PNG), we can go to the [localhost](http://localhost:8025/portal.php) page
 Now, download SQLmap
+
+(Please reach out to the Lab#1/img for picture source)

@@ -168,20 +168,6 @@ execl ("./shellcode", (char*)NULL);
 ```
 For now, I will go to terminal of Kali Linux, due to lab 2 needs to be made too
 ## 3. Attack
-**Translation to English:**
-
-- "Change it like this.
-- Then compile the file to get the object file.
-- Map it to a shared object.
-- Basically, it acts like a `libc` file.
-- It contains predefined functions.
-- So when a program runs, it will map the shared object file into memory and call the defined functions inside.
-- Here, because the original program calls `strcpy`,
-- I renamed the function,
-- But the function body doesn't just copy; it will execute another file."
-
----
-
 **Explanation:**
 
 In this context, the user is explaining the process of compiling a C source file into an object file and then mapping it into a shared object (likely a `.so` file in Unix-like systems). A shared object is similar to a library (like `libc`), which contains predefined functions that can be dynamically linked and used by programs at runtime.

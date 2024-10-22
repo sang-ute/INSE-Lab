@@ -185,4 +185,4 @@ In the example:
 # Task 2: Exploit using SQLmap
 ## Prepare the enviroment, SQLmap
 First, docker pull the bwapp back
-
+![alt text]([http://url/to/img.png](https://github.com/sang-ute/INSE-Lab/blob/main/Lab%231/img/bwaap.PNG))

@@ -15,8 +15,8 @@ First, we have to install some nessesary packets: Openssl, nmap, SSH, so on
 ![Installing](InstallSSL.PNG)
 Then, we create a private and public key in the client by using
 ` openssl genrsa -out client_private_key.pem 2048`
-And `openssl rsa -in client_private_key.pem -pubout -out client_public_key.pem`
-Then, we create a "Challenge" file
+And `openssl rsa -in client_private_key.pem -pubout -out client_public_key.pem`<br>
+Then, we create a "Challenge" file<br>
 And 'CHALLENGE$(openssl rand -base64 32) echo -n "$CHALLENGE" | openssl rsautl -encrypt -pubin -inkey client_public_key.pem -out encrypted_challenge.bin'
 After that, we send the file from the server to the client, returning them with Challenge message encrypted by public key
 We are here: `Creating Client and Server`-> `Set public key and private key` -> `Create message file`-> *Send encrypted file*-> `Decrypted message by private key`->`Sign with the private key`->'Send back to Server'->`Server received and decrypt by private key`

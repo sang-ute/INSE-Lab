@@ -73,7 +73,7 @@ Now, it should be in boot/challenge.bin
 
 Then, on the server's side, I will read and verified if the sender was the client or not:
 
-`openssl dgst -sha256 -verify /boot/client_public_key.pem -signature /path/to/signed_challenge.bin /path/to/decrypted_challenge.txt`
+`openssl dgst -sha256 -verify /boot/client_public_key.pem -signature /dev/signed_challenge.bin dev/decrypted_challenge.txt`
 
 It shows the following:
 ![image](https://github.com/user-attachments/assets/beac8d6e-ee4d-4368-b4c4-91058ee01f34)
@@ -82,6 +82,22 @@ It shows the following:
 
 As for my researching, it means that the OpenSSL has completely verify the signature for it to decrypt sucessfully:
 ![image](https://github.com/user-attachments/assets/c280739c-44c6-4fd1-88f8-272c921df395)
+
+I have sucessfully verify the signature, yeah!
+
+# Task 2: Encrypting large message 
+Create a text file at least 56 bytes.
+**Question 1**:
+Encrypt the file with aes-256 cipher in CFB and OFB modes. How do you evaluate both cipher as far as error propagation and adjacent plaintext blocks are concerned. 
+**Answer 1**:
+
+
+
+**Question 2**:
+Modify the 8th byte of encrypted file in both modes (this emulates corrupted ciphertext).
+Decrypt corrupted file, watch the result and give your comment on Chaining dependencies and Error propagation criteria.
+
+**Answer 2**:
 
 
 

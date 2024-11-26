@@ -143,6 +143,8 @@ Firstly, both done a great job encrypting and decrypting, took less then 1 sec t
 
 Encryption method seems to be different (of course)
 
+And it looks like cfb is taking more memory
+
 Adjacent Plaintext Blocks:
 
 CFB:
@@ -159,6 +161,20 @@ Modify the 8th byte of encrypted file in both modes (this emulates corrupted cip
 Decrypt corrupted file, watch the result and give your comment on Chaining dependencies and Error propagation criteria.
 
 **Answer 2**:
+
+First, let's change them by using hex converter:
+
+![image](https://github.com/user-attachments/assets/3993978c-4e3c-41a6-b02b-ae766c4dfe45)
+
+Next, I use Powershell to format Hex:
+
+`$ Format-Hex '.\random.txt'`
+
+![image](https://github.com/user-attachments/assets/d3a548f9-d8ed-44a3-bdd1-915a6e07e376)
+
+It shows the same thing:
+
+Now, let's modify the 8th byte:
 
 
 
